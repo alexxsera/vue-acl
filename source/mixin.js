@@ -24,7 +24,8 @@ export const register = (initial, acceptLocalRules, globalRules, router, notfoun
       }
 
       // to be backwards compatible (notfound could be string)
-      const notFoundPath = notfound.path || notfound;
+      let notFoundPath = notfound.path || notfound;
+      if (to.meta && to.meta.notfound) notFoundPath = to.meta.notfound
       if (to.path === notFoundPath) return next()
 
       /** @type {Array} */
